@@ -1,0 +1,16 @@
+
+.tr-format > td:last-child {
+    padding-left: 8px;
+}
+
+.tr-format > td:first-child {
+    text-align: right;
+}
+
+.tr-format > td:last-child {
+    text-align: left;
+}
+
+.tr-format:nth-child(even) {
+    background-color: #f2f2f2;
+}
