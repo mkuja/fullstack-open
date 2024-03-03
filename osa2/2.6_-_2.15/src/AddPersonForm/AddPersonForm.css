@@ -1,0 +1,38 @@
+
+.new-contact input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.new-contact label {
+    box-sizing: border-box;
+    height: 40px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.new-contact > div {
+    display: inline-block;
+}
+.new-contact > div > button {
+    display: inline-block;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border: #ccc 1px solid;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px;
+}
+
+.new-contact > div > button:hover {
+    background-color: bisque;
+}
