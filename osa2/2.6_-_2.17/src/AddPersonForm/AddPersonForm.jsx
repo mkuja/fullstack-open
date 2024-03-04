@@ -2,7 +2,11 @@ import { useState } from 'react'
 import './AddPersonForm.css'
 import pbService from '../services/phonebookServices.js'
 
-const AddPersonForm = ({persons, setPersons}) => {
+const AddPersonForm = ({
+    persons, 
+    setPersons, 
+    countdownShowMsg, 
+    setNotificationStyle}) => {
     
     // State for the name input field.
     const [newName, setNewName] = useState('')
@@ -13,7 +17,8 @@ const AddPersonForm = ({persons, setPersons}) => {
         event.preventDefault()
         const nn = newName
         const np = newPhone
-        if (persons.find(person => person.name === newName)) {
+
+        if (persons.find(person => person.name === newName)) { // Update branch.
             const updateOrNah = window.confirm(`${newName} is already added to phonebook, replace the old number?`) 
             if (!updateOrNah) return null
             // Update contact to db.
@@ -24,16 +29,21 @@ const AddPersonForm = ({persons, setPersons}) => {
                 // Get all contacts from the server.
                 pbService.getAllContacts()
                     .then(response => {
+                        console.log('response:', response)
                         setPersons(response.data)
-                    })
-                    .catch(error => {console.log('Error:', error)
+                    }).catch(error => {console.log('Error:', error)
+            })}).catch(error => {console.log('Error:', error)
+                countdownShowMsg(`Error ${error.code}: Contact doesn't exist anymore.`)
             })
-        })} else {
+            setNotificationStyle("update")
+            countdownShowMsg(`Contact '${nn}' updated.`)} else {
             pbService.createContact({name: nn, number: np})
                     .then(response => {
                         setPersons(persons.concat(response.data))
                     })
                     .catch(error => {console.log('Error:', error)})
+            setNotificationStyle("add")
+            countdownShowMsg(`Contact '${nn}' added.`)
             setNewName('')
             setNewPhone('')   
         }
