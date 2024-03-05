@@ -1,0 +1,18 @@
+
+.flag {
+    width: fit-content;
+    padding:10px;
+    margin: 0px auto;
+    margin-top: 16px;
+    background-color: brown;
+}
+
+.flag img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.languages-list {
+    list-style: none;
+}
